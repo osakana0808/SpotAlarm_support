@@ -1,21 +1,79 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プライバシーポリシー - spot alarm</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Spot Alarm プライバシーポリシー / Privacy Policy</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    .lang-switcher {
+      margin-bottom: 20px;
+    }
+    .lang-button {
+      padding: 6px 12px;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+    [lang="ja"], [lang="en"] {
+      display: none;
+    }
+    .visible {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-    <h1>プライバシーポリシー</h1>
+  <div class="lang-switcher">
+    <button class="lang-button" onclick="switchLanguage('ja')">日本語</button>
+    <button class="lang-button" onclick="switchLanguage('en')">English</button>
+  </div>
 
-    <p>このアプリでは、位置情報を利用して、ユーザーが特定のスポットに近づいたかどうかを判別しています。</p>
-    <h2>位置情報の使用目的 </h2>
-    <p>本アプリは、ユーザー体験を向上させるために「常に位置情報を許可」していただく必要があります。取得した位置情報は、スポットへの接近を検知する目的でのみ使用されます。</p>
-    <h2>位置情報の取り扱い</h2>
-    <p>位置情報は端末内でのみ処理され、当アプリの運営側で収集・保存・共有することは一切ありません。</p>
-    <h2>その他</h2>
-    <p>ユーザーのプライバシー保護を最優先に考え、必要最低限の情報のみを使用しています。</p> 
+  <!-- 日本語版 -->
+  <div lang="ja" id="ja" class="visible">
+    <h1>プライバシーポリシー</h1>
+    <p>本プライバシーポリシーは、Spot Alarm（以下「本アプリ」といいます）がユーザーの情報をどのように取り扱うかを示すものです。本アプリはユーザーのプライバシーを尊重し、以下の方針に基づいて個人情報を取り扱います。</p>
+
+    <h2>位置情報の使用</h2>
+    <p>本アプリは、目的地への接近を検知するために、端末の位置情報を使用します。この位置情報は<strong>端末内でのみ処理され、外部サーバーや第三者には一切送信されません</strong>。</p>
+
+    <h2>個人情報の収集</h2>
+    <p>本アプリは、氏名、メールアドレス、連絡先などの個人情報を収集・保存・送信することはありません。</p>
+
+    <h2>第三者への提供</h2>
+    <p>取得された情報を第三者へ提供することは一切ありません。</p>
+
+    <h2>セキュリティ</h2>
+    <p>本アプリはすべての処理を端末内で完結させており、外部へのデータ漏洩リスクは最小限に抑えられています。</p>
+  </div>
+
+  <!-- 英語版 -->
+  <div lang="en" id="en">
+    <h1>Privacy Policy</h1>
+    <p>This Privacy Policy explains how Spot Alarm (hereinafter referred to as "the App") handles user data. The App respects your privacy and processes personal information based on the following principles.</p>
+
+    <h2>Use of Location Information</h2>
+    <p>The App uses your device’s location data solely to detect proximity to your destination. This location data is <strong>processed only on your device and is never transmitted to external servers or third parties</strong>.</p>
+
+    <h2>Collection of Personal Information</h2>
+    <p>The App does not collect, store, or transmit any personally identifiable information such as names, email addresses, or contact information.</p>
+
+    <h2>Sharing with Third Parties</h2>
+    <p>No information obtained by the App is shared with any third parties.</p>
+
+    <h2>Security</h2>
+    <p>All processing is handled locally on the device, minimizing the risk of external data leakage.</p>
+  </div>
+
+  <script>
+    function switchLanguage(lang) {
+      document.getElementById('ja').classList.remove('visible');
+      document.getElementById('en').classList.remove('visible');
+      document.getElementById(lang).classList.add('visible');
+    }
+  </script>
+
 </body>
 </html>
