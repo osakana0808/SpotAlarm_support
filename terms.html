@@ -16,14 +16,10 @@
       margin-right: 8px;
       cursor: pointer;
     }
-    [lang="ja"],
-    [lang="en"] {
+    hidden{
       display: none;
     }
-    [lang="ja"].visible,
-    [lang="en"].visible {
-      display: block;
-    }
+
   </style>
 </head>
 <body>
@@ -34,7 +30,7 @@
   </div>
 
   <!-- 日本語版 -->
-  <div lang="ja" id="ja" class="visible">
+  <div lang="ja" id="ja">
     <h1>利用規約</h1>
     <p>Spot Alarm（以下「本アプリ」といいます）は、ユーザーが目的地に近づいた際に通知を行う補助的なツールです。本アプリを使用することにより、以下の条件に同意したものとみなされます。</p>
 
@@ -55,7 +51,7 @@
   </div>
 
   <!-- 英語版 -->
-  <div lang="en" id="en">
+  <div lang="en" id="en" class="hidden">
     <h1>Terms of Use</h1>
     <p>Spot Alarm (hereinafter referred to as "the App") is a supplementary tool that notifies users when approaching a destination. By using the App, you are deemed to have agreed to the following terms and conditions.</p>
 
@@ -77,9 +73,16 @@
 
   <script>
     function switchLanguage(lang) {
-      document.getElementById('ja').classList.remove('visible');
-      document.getElementById('en').classList.remove('visible');
-      document.getElementById(lang).classList.add('visible');
+      const jaContent=document.getElementById('ja');
+      const enContent=document.getElementById('en');
+
+      jaContent.classList.add('hidden');
+      enContent.classList.add('hidden');
+      if (lang === 'ja') {
+        jaContent.classList.remove('hidden');
+      } else {
+        enContent.classList.remove('hidden');
+      }
     }
   </script>
 
