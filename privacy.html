@@ -8,27 +8,16 @@
       font-family: sans-serif;
       margin: 20px;
     }
-
     .lang-switcher {
       margin-bottom: 20px;
     }
-
     .lang-button {
       padding: 6px 12px;
       margin-right: 8px;
       cursor: pointer;
     }
-
-    /* すべて非表示がデフォルト */
-    [lang="ja"],
-    [lang="en"] {
+    .hidden {
       display: none;
-    }
-
-    /* visible クラス付きの要素だけ表示 */
-    [lang="ja"].visible,
-    [lang="en"].visible {
-      display: block;
     }
   </style>
 </head>
@@ -39,8 +28,8 @@
     <button class="lang-button" onclick="switchLanguage('en')">English</button>
   </div>
 
-  <!-- 日本語版 -->
-  <div lang="ja" id="ja" class="visible">
+  <!-- 日本語版 (初期状態で表示) -->
+  <div lang="ja" id="ja">
     <h1>プライバシーポリシー</h1>
     <p>本プライバシーポリシーは、Spot Alarm（以下「本アプリ」といいます）がユーザーの情報をどのように取り扱うかを示すものです。本アプリはユーザーのプライバシーを尊重し、以下の方針に基づいて個人情報を取り扱います。</p>
 
@@ -57,8 +46,8 @@
     <p>本アプリはすべての処理を端末内で完結させており、外部へのデータ漏洩リスクは最小限に抑えられています。</p>
   </div>
 
-  <!-- 英語版 -->
-  <div lang="en" id="en">
+  <!-- 英語版 (初期状態で非表示) -->
+  <div lang="en" id="en" class="hidden">
     <h1>Privacy Policy</h1>
     <p>This Privacy Policy explains how Spot Alarm (hereinafter referred to as "the App") handles user data. The App respects your privacy and processes personal information based on the following principles.</p>
 
@@ -75,13 +64,23 @@
     <p>All processing is handled locally on the device, minimizing the risk of external data leakage.</p>
   </div>
 
-<!--   <script>
+  <script>
     function switchLanguage(lang) {
-      document.getElementById('ja').classList.remove('visible');
-      document.getElementById('en').classList.remove('visible');
-      document.getElementById(lang).classList.add('visible');
+      const jaContent = document.getElementById('ja');
+      const enContent = document.getElementById('en');
+
+      // まず両方にhiddenクラスを追加して一旦リセット
+      jaContent.classList.add('hidden');
+      enContent.classList.add('hidden');
+
+      // 選択された言語の方からhiddenクラスを削除して表示する
+      if (lang === 'ja') {
+        jaContent.classList.remove('hidden');
+      } else {
+        enContent.classList.remove('hidden');
+      }
     }
-  </script> -->
+  </script>
 
 </body>
 </html>
