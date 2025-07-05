@@ -8,18 +8,24 @@
       font-family: sans-serif;
       margin: 20px;
     }
+
     .lang-switcher {
       margin-bottom: 20px;
     }
+
     .lang-button {
       padding: 6px 12px;
       margin-right: 8px;
       cursor: pointer;
     }
+
+    /* すべて非表示がデフォルト */
     [lang="ja"],
     [lang="en"] {
       display: none;
     }
+
+    /* visible クラス付きの要素だけ表示 */
     [lang="ja"].visible,
     [lang="en"].visible {
       display: block;
