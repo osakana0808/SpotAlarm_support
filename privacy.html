@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Spot Alarm プライバシーポリシー / Privacy Policy</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: sans-serif;
@@ -11,10 +12,30 @@
     .lang-switcher {
       margin-bottom: 20px;
     }
-    .lang-button {
-      padding: 6px 12px;
+        .lang-button {
+      background-color: #ffffff; /* 背景色: 白 */
+      color: #2e7d32; /* 文字色: テーマカラーの緑 */
+      border: 1px solid #2e7d32; /* 境界線 */
+      border-radius: 20px; /* 角を丸くしてカプセル型に */
+      padding: 8px 18px; /* 内側の余白を調整 */
       margin-right: 8px;
       cursor: pointer;
+      font-weight: bold; /* 文字を太く */
+      font-size: 14px;
+      /* 変化を滑らかにするアニメーション */
+      transition: all 0.2s ease-in-out; 
+    }
+
+    /* マウスが乗った時のスタイル */
+    .lang-button:hover {
+      background-color: #e8f5e9; /* 薄い緑色に変化 */
+    }
+
+    /* 選択されているボタンのスタイル (activeクラスが付いた時) */
+    .lang-button.active {
+      background-color: #2e7d32; /* 背景色: テーマカラーの緑 */
+      color: #ffffff; /* 文字色: 白 */
+      border-color: #2e7d32; /* 境界線の色も合わせる */
     }
     .hidden {
       display: none;
@@ -24,8 +45,8 @@
 <body>
 
   <div class="lang-switcher">
-    <button class="lang-button" onclick="switchLanguage('ja')">日本語</button>
-    <button class="lang-button" onclick="switchLanguage('en')">English</button>
+    <button class="lang-button active" data-lang="ja" onclick="switchLanguage('ja')">日本語</button>
+    <button class="lang-button" data-lang="en" onclick="switchLanguage('en')">English</button>
   </div>
 
   <!-- 日本語版 (初期状態で表示) -->
@@ -69,16 +90,23 @@
       const jaContent = document.getElementById('ja');
       const enContent = document.getElementById('en');
 
-      // まず両方にhiddenクラスを追加して一旦リセット
-      jaContent.classList.add('hidden');
-      enContent.classList.add('hidden');
-
-      // 選択された言語の方からhiddenクラスを削除して表示する
+      // 1. コンテンツの表示/非表示を切り替え
       if (lang === 'ja') {
         jaContent.classList.remove('hidden');
+        enContent.classList.add('hidden');
       } else {
+        jaContent.classList.add('hidden');
         enContent.classList.remove('hidden');
       }
+
+      // 2. ボタンのactiveクラスを切り替え
+      document.querySelectorAll('.lang-button').forEach(button => {
+        if (button.dataset.lang === lang) {
+          button.classList.add('active');
+        } else {
+          button.classList.remove('active');
+        }
+      });
     }
   </script>
 
