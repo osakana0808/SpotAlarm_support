@@ -11,25 +11,43 @@
     .lang-switcher {
       margin-bottom: 20px;
     }
+
     .lang-button {
-      padding: 6px 12px;
+      background-color: #ffffff;
+      color: #2e7d32;
+      border: 1px solid #2e7d32;
+      border-radius: 20px;
+      padding: 8px 18px;
       margin-right: 8px;
       cursor: pointer;
-    }
-    hidden{
-      display: none;
+      font-weight: bold;
+      font-size: 14px;
+      transition: all 0.2s ease-in-out;
     }
 
+    .lang-button:hover {
+      background-color: #e8f5e9;
+    }
+
+    .lang-button.active {
+      background-color: #2e7d32;
+      color: #ffffff;
+      border-color: #2e7d32;
+    }
+    
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
   <div class="lang-switcher">
-    <button class="lang-button" onclick="switchLanguage('ja')">日本語</button>
-    <button class="lang-button" onclick="switchLanguage('en')">English</button>
+    <button class="lang-button active" data-lang="ja" onclick="switchLanguage('ja')">日本語</button>
+    <button class="lang-button" data-lang="en" onclick="switchLanguage('en')">English</button>
   </div>
 
-  <!-- 日本語版 -->
+  <!-- 日本語版 (初期状態で表示) -->
   <div lang="ja" id="ja">
     <h1>利用規約</h1>
     <p>Spot Alarm（以下「本アプリ」といいます）は、ユーザーが目的地に近づいた際に通知を行う補助的なツールです。本アプリを使用することにより、以下の条件に同意したものとみなされます。</p>
@@ -50,7 +68,7 @@
     <p>開発者は、予告なく本アプリの機能や仕様を変更、または提供を終了することがあります。</p>
   </div>
 
-  <!-- 英語版 -->
+  <!-- 英語版 (初期状態で非表示) -->
   <div lang="en" id="en" class="hidden">
     <h1>Terms of Use</h1>
     <p>Spot Alarm (hereinafter referred to as "the App") is a supplementary tool that notifies users when approaching a destination. By using the App, you are deemed to have agreed to the following terms and conditions.</p>
@@ -73,16 +91,26 @@
 
   <script>
     function switchLanguage(lang) {
-      const jaContent=document.getElementById('ja');
-      const enContent=document.getElementById('en');
+      const jaContent = document.getElementById('ja');
+      const enContent = document.getElementById('en');
 
-      jaContent.classList.add('hidden');
-      enContent.classList.add('hidden');
+      // 1. コンテンツの表示/非表示を切り替え
       if (lang === 'ja') {
         jaContent.classList.remove('hidden');
+        enContent.classList.add('hidden');
       } else {
+        jaContent.classList.add('hidden');
         enContent.classList.remove('hidden');
       }
+
+      // 2. ボタンのactiveクラスを切り替え
+      document.querySelectorAll('.lang-button').forEach(button => {
+        if (button.dataset.lang === lang) {
+          button.classList.add('active');
+        } else {
+          button.classList.remove('active');
+        }
+      });
     }
   </script>
 
